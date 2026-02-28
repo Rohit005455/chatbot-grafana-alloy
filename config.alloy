@@ -1,6 +1,6 @@
 prometheus.scrape "chatbot" {
   targets = [{
-    __address__ = "chatbot-genai-gke3.onrender.com"
+    __address__ = "chatbot-genai-gke3.onrender.com",
   }]
 
   scheme = "https"
