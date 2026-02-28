@@ -1,0 +1,23 @@
+prometheus.scrape "chatbot" {
+  targets = [{
+    __address__ = "chatbot-genai-gke3.onrender.com"
+  }]
+
+  scheme = "https"
+  metrics_path = "/metrics"
+
+  forward_to = [prometheus.remote_write.metrics_hosted_prometheus.receiver]
+}
+
+
+
+prometheus.remote_write "metrics_hosted_prometheus" {
+  endpoint {
+    url  = "https://prometheus-prod-xx.grafana.net/api/prom/push"
+
+    basic_auth {
+      username = env("GRAFANA_INSTANCE_ID")
+      password = env("GRAFANA_API_TOKEN")
+    }
+  }
+}
