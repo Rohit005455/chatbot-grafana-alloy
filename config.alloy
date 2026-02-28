@@ -12,8 +12,9 @@ prometheus.scrape "chatbot" {
 
 
 prometheus.remote_write "metrics_hosted_prometheus" {
-  endpoint {
-    url  = "https://prometheus-prod-xx.grafana.net/api/prom/push"
+   endpoint {
+      name = "hosted-prometheus"
+      url  = "https://prometheus-prod-43-prod-ap-south-1.grafana.net/api/prom/push"
 
     basic_auth {
       username = env("GRAFANA_INSTANCE_ID")
